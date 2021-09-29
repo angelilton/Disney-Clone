@@ -1,9 +1,16 @@
+/* html {
+  font-size: 62.5%;
+} */
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: rgb(52, 61, 70);
+  color: #fff;
+  margin: 2px 1rem;
 }
 
 a {
@@ -13,4 +20,110 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.disneyLogo {
+  color: white;
+}
+
+.navbar {
+  width: 99%;
+  justify-content: space-between;
+  display: flex;
+  margin: 10px;
+  /* border: 1px solid blue; */
+}
+
+.account-info {
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
+  /* border: 1px solid red; */
+  align-items: center;
+  position: relative;
+}
+
+.account-info img {
+  height: 55px;
+  width: 50px;
+}
+
+.card {
+  width: 250px;
+  height: 150px;
+  position: 'relative';
+
+  margin: 10px;
+  margin-right: 15px;
+  cursor: pointer;
+
+  border-radius: 5%;
+  filter: drop-shadow(5px 5px 10px #32383d);
+}
+
+.cards {
+  display: flex;
+  position: relative;
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.cards::-webkit-scrollbar {
+  height: 7px;
+  width: 600px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #e5e5e0;
+}
+
+.cover {
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.cover img {
+  width: 100%;
+}
+
+.video-feed {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.film-info {
+  margin-top: 2px;
+  padding: 1rem;
+  background: #496277;
+}
+
+.film-description {
+  display: flex;
+  margin: 1rem 0;
+}
+header {
+  text-align: center;
+}
+
+header h2 {
+  margin-bottom: 0rem;
+  text-shadow: #32383d;
+}
+
+header span {
+  text-align: justify;
+}
+
+.film-description p {
+  margin-left: 2rem;
+  width: 500px;
+}
+
+.film-page {
+  margin: 10px 0 50px;
 }
