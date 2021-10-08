@@ -1,6 +1,10 @@
 import { GraphQLClient } from 'graphql-request'
 import Img from 'next/image'
-import { GET_ACCOUNT, GET_VIDEOS, GET_VIDEO } from '../../graphql/query'
+import {
+  GET_ACCOUNT,
+  GET_VIDEO,
+  GET_USER_NOT_WATCHED
+} from '../../graphql/query'
 import Section from '/components/Section'
 
 const userId = 'cktri9s8g3tbz0c033ewsqt0r'
@@ -14,23 +18,26 @@ export const getServerSideProps = async (ctx) => {
   const variables = { slug }
 
   const { video } = await graphQLClient.request(GET_VIDEO, variables)
-  const { videos } = await graphQLClient.request(GET_VIDEOS)
+
   const {
     account: { seen }
   } = await graphQLClient.request(GET_ACCOUNT, { id: userId })
 
+  const userSlug = seen.map(({ slug }) => slug)
+
+  const { videos } = await graphQLClient.request(GET_USER_NOT_WATCHED, {
+    array: userSlug
+  })
+
   return {
     props: {
       video,
-      videos,
-      slug: seen.map(({ slug }) => slug)
+      videos
     }
   }
 }
 
-export default function Index({ video, videos, slug }) {
-  const videoFilter = videos.filter((video) => !slug.includes(video.slug))
-
+export default function Index({ video, videos }) {
   return (
     <section className="film-page">
       <iframe
@@ -61,7 +68,7 @@ export default function Index({ video, videos, slug }) {
         </article>
       </section>
       <section>
-        <Section genre="talvez você goste" videos={videoFilter} />
+        <Section genre="talvez você goste" videos={videos} />
       </section>
     </section>
   )
