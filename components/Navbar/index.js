@@ -2,28 +2,24 @@ import Img from 'next/image'
 import Link from 'next/link'
 import disney_logo from '/public/disney_logo.png'
 
+import * as S from './styles'
+
 const Navbar = ({ account }) => {
   const { username, avatar } = account
 
   return (
-    <div className="navbar">
-      <div>
+    <S.Navbar>
+      <S.Logo>
         <Link href="/" passHref>
-          <Img
-            className="disneyLogo"
-            width={100}
-            height={62}
-            src={disney_logo}
-            alt="Disney logo"
-          />
+          <Img width={100} height={58} src={disney_logo} alt="Disney logo" />
         </Link>
-      </div>
+      </S.Logo>
 
-      <div className="account-info">
-        <p>Welcome, {username}</p>
-        <img className="avatar" src={avatar.url} />
-      </div>
-    </div>
+      <S.AccountInfo>
+        <S.Title>Welcome, {username}</S.Title>
+        <Img src={avatar.url} layout="fixed" width={50} height={47} />
+      </S.AccountInfo>
+    </S.Navbar>
   )
 }
 

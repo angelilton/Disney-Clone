@@ -1,9 +1,11 @@
 import Img from 'next/image'
 
+import * as S from './styles'
+
 const Card = ({ thumbnail }) => (
-  <div className="card">
+  <S.Card>
     <Img width={250} height={150} src={thumbnail.url} alt={thumbnail.title} />
-  </div>
+  </S.Card>
 )
 
 export default Card

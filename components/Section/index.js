@@ -1,16 +1,18 @@
 import Link from 'next/link'
 import Card from '/components/Card'
 
+import * as S from './styles'
+
 const index = ({ genre, videos }) => (
   <section>
-    <h3>{genre}</h3>
-    <div className="cards">
-      {videos.map((video) => (
-        <a key={video.id} href={`/filme/${video.slug}`}>
-          <Card thumbnail={video.thumbnail} />
+    <S.Title>{genre}</S.Title>
+    <S.Card>
+      {videos.map(({ id, slug, thumbnail }) => (
+        <a key={id} href={`/filme/${slug}`}>
+          <Card thumbnail={thumbnail} />
         </a>
       ))}
-    </div>
+    </S.Card>
   </section>
 )
 
