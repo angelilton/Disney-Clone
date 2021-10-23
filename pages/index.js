@@ -1,13 +1,9 @@
-import { useEffect } from 'react'
-
 import { GraphQLClient } from 'graphql-request'
-import Img from 'next/image'
+import { GET_VIDEOS, GET_ACCOUNT, GET_BANNER } from '../graphql/query'
 
-import { GET_VIDEOS } from '/graphql/query'
 import Section from '/components/Section'
-import { GET_ACCOUNT } from '../graphql/query'
 import Navbar from '../components/Navbar'
-import Cover from '../components/Cover'
+import Banner from '../components/Banner'
 
 const userId = 'cktri9s8g3tbz0c033ewsqt0r'
 
@@ -17,18 +13,20 @@ export const getStaticProps = async () => {
   const graphQLClient = new GraphQLClient(url)
 
   const { videos } = await graphQLClient.request(GET_VIDEOS)
-
+  const { banners } = await graphQLClient.request(GET_BANNER)
   const { account } = await graphQLClient.request(GET_ACCOUNT, { id: userId })
 
   return {
     props: {
+      revalidate: 60,
+      banners,
       videos,
       account
     }
   }
 }
 
-export default function Home({ videos, account }) {
+export default function Home({ videos, account, banners }) {
   const filterCategory = (videos, genre) => {
     return videos.filter((video) => video.tags.includes(genre))
   }
@@ -37,7 +35,7 @@ export default function Home({ videos, account }) {
     <>
       <section>
         <Navbar account={account} />
-        <Cover videos={videos} />
+        <Banner banners={banners} />
       </section>
       <section className="video-feed">
         <Section genre="Disney" videos={filterCategory(videos, 'Disney')} />

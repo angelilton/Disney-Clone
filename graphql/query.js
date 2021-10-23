@@ -52,3 +52,15 @@ export const GET_USER_NOT_WATCHED = gql`
   }
   ${VideoFragment}
 `
+
+export const GET_BANNER = gql`
+  query {
+    banners {
+      id
+      cover {
+        url
+      }
+      title
+    }
+  }
+`
